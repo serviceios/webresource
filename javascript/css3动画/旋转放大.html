@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>旋转放大</title>
+<style>
+.a {
+	/*
+	transform:rotate(360deg) scale(1.2);  可以并行写 翻转读书   放大倍数  可以是小数 也可以是整数
+	ease-in-out 加速然后减速   All所有的
+	*/
+	transition:All 0.4s ease-in-out;
+	-webkit-transition:All 0.4s ease-in-out;
+	-moz-transition:All 0.4s ease-in-out;
+	-o-transition:All 0.4s ease-in-out;
+	
+	
+	width:200px;
+	height:200px;
+	background-color:#000000;
+	display:block;
+	margin:100px auto;
+	color:#fff;
+	text-align:center;
+	line-height:200px;
+	font-size:20px;
+	font-weight:bold;
+}
+.a:hover {
+	transform:rotate(360deg) scale(1.2);
+	-webkit-transform:rotate(360deg) scale(1.2);
+	-moz-transform:rotate(360deg) scale(1.2);
+	-o-transform:rotate(360deg) scale(1.2);
+	-ms-transform:rotate(360deg) scale(1.2);
+}
+</style>
+</head>
+
+<body>
+<a class="a">旋转放大</a>
+</body>
+</html>

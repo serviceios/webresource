@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>360度旋转</title>
+<style>
+
+/*
+ransition:0.4s 翻转时间
+transform:rotate(360deg);翻转角度
+*/
+.a{
+	transition:0.4s;
+	-webkit-transition:0.4s;
+	-moz-transition:0.4s;
+	-o-transition:0.4s;
+/*	transition:All 0.4s ease-in-out;
+	-webkit-transition:All 0.4s ease-in-out;
+	-moz-transition:All 0.4s ease-in-out;
+	-o-transition:All 0.4s ease-in-out;
+*/	
+	width:200px;
+	height:200px;
+	background-color:#000000;
+	display:block;
+	margin:100px auto;
+	color:#fff;
+	text-align:center;
+	line-height:200px;
+	font-size:20px;
+	font-weight:bold;
+}
+.a:hover {
+	transform:rotate(360deg);
+	-webkit-transform:rotate(360deg);
+	-moz-transform:rotate(360deg);
+	-o-transform:rotate(360deg);
+	-ms-transform:rotate(360deg);
+}
+</style>
+</head>
+
+<body>
+<a class="a">360度旋转</a>
+</body>
+</html>

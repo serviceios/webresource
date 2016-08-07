@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简单好用的原生js百分比进度条效果</title>
+	<style>
+		*{margin:0;padding:0;list-style:none;}
+		.lanren{width: 450px; border: 1px solid #2BB7E4; height: 25px;margin:100px auto;}
+		#bar{ display: block;background: #2BB7E4; float: left; height: 100%;text-align: center;line-height: 25px; color: #FFF;} 
+	</style>
+</head>
+<body>
+	<!-- 代码部分begin -->
+	<div class="lanren">
+		<div id="bar" style="width:1%;"></div>
+	</div>
+	<script>
+		function $(d){
+			return document.getElementById(d);
+		}
+		function smation(){ 
+			$("bar").style.width = parseInt($("bar").style.width) + 1 + "%"; 
+			$("bar").innerHTML = $("bar").style.width; 
+			if($("bar").style.width == "100%"){ 
+				window.clearInterval(bar); 
+			}
+		} 
+		var bar = setInterval(function(){
+			smation();
+		}, 50);; 
+		window.onload = function(){ bar;} 
+	</script>
+	<!-- 代码部分end -->
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>banner切换</title>
+</head>
+<body>
+<style>
+    	*{ padding:0px; margin:0px; outline-style:none}
+		img{ border:none}	
+		#banner{ width:366px; height:410px; overflow:hidden; margin:50px auto}
+		.bannerimg{ float:left;width:366px; height:350px; overflow:hidden;}
+    	.bannermeun{float:left; width:366px; height:50px; margin:0 auto; margin-top:10px;}
+    	.left{ float:left;width:100px; height:50px; background:#000; line-height:50px; color:#FFF; text-align:center; cursor:pointer}
+    	.right{ float:right;width:100px; height:50px; background:#000; line-height:50px; color:#FFF; text-align:center; cursor:pointer}
+    </style>
+<div  id="banner">
+    <div class="smalltitle">
+      <ul>
+        <li class="thistitle"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+  <div class="bannerimg">
+    <ul>
+      <li ><img src="images/bl_2.jpg"></li>
+      <li ><img src="images/bl_3.jpg"></li>
+      <li ><img src="images/bl_4.jpg"></li>
+      <li ><img src="images/bl_5.jpg"></li>
+    </ul>
+  </div>
+  <div id="class">
+    <div class="left">上一页</div>
+    <div class="right">下一页</div>
+  </div>
+</div>
+<script>
+   		
+	function getStyle(obj,name)
+{
+    if(obj.currentStyle)
+    {
+        return obj.currentStyle[name]
+    }
+    else
+    {
+        return getComputedStyle(obj,false)[name]
+    }
+}
+
+function getByClass(oParent,nClass)
+{
+    var eLe = oParent.getElementsByTagName('*');
+    var aRrent  = [];
+    for(var i=0; i<eLe.length; i++)
+    {
+        if(eLe[i].className == nClass)
+        {
+            aRrent.push(eLe[i]);
+        }
+    }
+    return aRrent;
+}
+
+function startMove(obj,att,add)
+{
+    clearInterval(obj.timer)
+    obj.timer = setInterval(function(){
+       var cutt = 0 ;
+       if(att=='opacity')
+       {
+           cutt = Math.round(parseFloat(getStyle(obj,att)));
+       }
+       else
+       {
+           cutt = Math.round(parseInt(getStyle(obj,att)));
+       }
+       var speed = (add-cutt)/4;
+       speed = speed>0?Math.ceil(speed):Math.floor(speed);
+       if(cutt==add)
+       {
+           clearInterval(obj.timer)
+       }
+       else
+       {
+           if(att=='opacity')
+           {
+               obj.style.opacity = (cutt+speed)/100;
+               obj.style.filter = 'alpha(opacity:'+(cutt+speed)+')';
+           }
+           else
+           {
+               obj.style[att] = cutt+speed+'px';
+           }
+       }
+       
+    },30)
+}
+
+  window.onload = function()
+  {
+	  
+      var oDiv = document.getElementById('banner');
+      var oPre = getByClass(oDiv,'left')[0];
+      var oNext = getByClass(oDiv,'right')[0];
+      var oUlBig = getByClass(oDiv,'bannerimg')[0];
+      var aBigLi = oUlBig.getElementsByTagName('li');
+	  
+	  
+      var oDivSmall = getByClass(oDiv,'smalltitle')[0]
+      var aLiSmall = oDivSmall.getElementsByTagName('li');
+      
+      function tab()
+      {
+         for(var i=0; i<aLiSmall.length; i++)
+         {
+            aLiSmall[i].className = '';
+         }
+         aLiSmall[now].className = 'thistitle'
+         startMove(oUlBig,'left',-(now*aBigLi[0].offsetWidth))
+      }
+      var now = 0;
+      for(var i=0; i<aLiSmall.length; i++)
+      {
+          aLiSmall[i].index = i;
+          aLiSmall[i].onclick = function()
+          {
+              now = this.index;
+              tab();
+          }
+     }
+      oPre.onclick = function()
+      {
+          now--
+          if(now ==-1)
+          {
+              now = aBigLi.length;
+          }
+           tab();
+      }
+       oNext.onclick = function()
+      {
+           now++
+          if(now ==aBigLi.length)
+          {
+              now = 0;
+          }
+          tab();
+      }
+      var timer = setInterval(oNext.onclick,3000) //¹ö¶¯¼ä¸ôÊ±¼äÉèÖÃ
+      oDiv.onmouseover = function()
+      {
+          clearInterval(timer)
+      }
+       oDiv.onmouseout = function()
+      {
+          timer = setInterval(oNext.onclick,3000) //¹ö¶¯¼ä¸ôÊ±¼äÉèÖÃ
+      }
+  }
+	
+	
+	
+   
+   
+   
+   </script>
+</body>
+</html>
